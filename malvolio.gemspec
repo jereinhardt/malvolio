@@ -39,6 +39,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "inky-rb"
   spec.add_dependency "premailer"
   spec.add_dependency "filewatcher"
+  spec.add_dependency "compass"
+  spec.add_dependency "sass"
 
   spec.add_development_dependency "rails"
   spec.add_development_dependency "bundler", "~> 1.17"

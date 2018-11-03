@@ -20,7 +20,7 @@ module Malvolio
 
 			def create_dist_and_tmp_files
 				Dir.mkdir File.join(project_name, "dist")
-				Dir.mkdir File.join(project_name, ".tmp")
+				Dir.mkdir File.join(project_name, "tmp")
 			end
 		end
 	end
