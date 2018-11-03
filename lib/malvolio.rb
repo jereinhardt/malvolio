@@ -1,6 +1,5 @@
 require "malvolio/version"
+require "malvolio/cli"
 
 module Malvolio
-  class Error < StandardError; end
-  # Your code goes here...
 end
