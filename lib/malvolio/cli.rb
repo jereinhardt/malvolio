@@ -1,5 +1,6 @@
 require "thor"
 require "rails/generators"
+require "filewatcher"
 
 module Malvolio
 	class CLI < Thor
@@ -22,6 +23,14 @@ module Malvolio
 		option :no_warnings, type: :boolean
 		desc "watch [PATH] [--no-warnings]", "watch the project files and build and file changes"
 		def watch(path = nil)
+			path = File.expand_path(path || ".")
+			compiler = Malvolio::Compiler.new(path, options[:no_warnings])
+			html_files = Dir[File.join(path, "src", "**", "*.html")]
+			css_files = Dir[File.join(path, "src", "**", "*.css")]
+			sass_files = Dir[File.join(path, "src", "**", "*.scss")]
+			files = html_files + css_files + sass_files
+			puts "Now watching project for changes at #{path}"
+			Filewatcher.new(files).watch { compiler.run! }
 		end
 	end
 end
