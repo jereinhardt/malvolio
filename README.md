@@ -18,7 +18,9 @@ To create a new project, run the command
 malvolio new <project-name> [--inky]
 ```
 
-This will generate a new project with the following structure:
+the `--inky` option will create a project that allows you to use The [Zurb Foundation's Inky Templating Language](https://foundation.zurb.com/emails/docs/inky.html) and comes bundled with their (Foundation Email CSS Framework)[https://foundation.zurb.com/emails.html].
+
+The `new` command will generate a new project with the following structure:
 
 ```
 /project-name
