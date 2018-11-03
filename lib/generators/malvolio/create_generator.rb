@@ -10,7 +10,7 @@ module Malvolio
 				template "index.html", File.join(project_name, "src", "index.html")
 			end
 
-			def create_css_file
+			def create_css_file 
 				template "index.scss", File.join(project_name, "src", "scss", "index.scss")
 			end
 

@@ -11,7 +11,7 @@ module Malvolio
 			end
 
 			def create_css_file
-				template "index.scss", File.join(project_name, "src", "scss", "index.scss")
+				directory "scss", File.join(project_name, "src", "scss")
 			end
 
 			def create_config_file

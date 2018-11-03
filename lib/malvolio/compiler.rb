@@ -32,7 +32,7 @@ module Malvolio
 			dest_path = File.join(path, "tmp", "index.html")
 			if config["inky"]
 				html_string = File.read(src_path)
-				html_output = Inky::Core.release_the_kraken(html_string)
+				html_output = Inky::Core.new.release_the_kraken(html_string)
 				File.write(dest_path, html_output)
 			else
 				FileUtils.cp(src_path, dest_path)
