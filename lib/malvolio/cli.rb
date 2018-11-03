@@ -4,11 +4,11 @@ require "filewatcher"
 
 module Malvolio
 	class CLI < Thor
-		option :no_inky, type: :boolean
-		desc "new NAME [--no-inky]", "creates a new email project"
+		option :inky, type: :boolean
+		desc "new NAME [--inky]", "creates a new email project"
 		def new(name)
-			if options[:no_inky]
-				::Rails::Generators.invoke("malvolio:create_without_inky", [name])
+			if options[:inky]
+				::Rails::Generators.invoke("malvolio:create_with_inky", [name])
 			else
 				::Rails::Generators.invoke("malvolio:create", [name])
 			end

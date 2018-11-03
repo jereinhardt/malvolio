@@ -14,15 +14,15 @@ RSpec.describe Malvolio::CLI do
 
 		it "creates a new project with inky" do
 			executable_path = File.expand_path("../../../bin/malvolio", __FILE__)
-			Malvolio::CLI.start(["new", project_name])
+			Malvolio::CLI.start(["new", project_name, "--inky"])
 			
 			expect(project_name).to have_been_created
 			expect(project_name).to be_using_inky
 		end
 
-		it "creates a new project without inky" do
+		it "creates a new project" do
 			executable_path = File.expand_path("../../../bin/malvolio", __FILE__)
-			Malvolio::CLI.start(["new", project_name, "--no-inky"])
+			Malvolio::CLI.start(["new", project_name])
 
 			expect(project_name).to have_been_created
 			expect(project_name).not_to be_using_inky

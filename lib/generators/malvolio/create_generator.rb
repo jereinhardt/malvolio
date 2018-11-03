@@ -1,6 +1,5 @@
 require "rails/generators"
 
-# Creates a project that uses Inky
 module Malvolio
 	module Generators
 		class CreateGenerator < Rails::Generators::Base

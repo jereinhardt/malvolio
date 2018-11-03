@@ -2,8 +2,8 @@ require "rails/generators"
 
 module Malvolio
 	module Generators
-		class CreateWithoutInkyGenerator < ::Rails::Generators::Base
-			source_root File.join(File.dirname(__FILE__), "templates", "base_without_inky")
+		class CreateWithInkyGenerator < ::Rails::Generators::Base
+			source_root File.join(File.dirname(__FILE__), "templates", "base_with_inky")
 			argument :project_name, type: :string
 
 			def create_html_file
@@ -18,7 +18,7 @@ module Malvolio
 				template "config.yaml", File.join(project_name, "config.yaml")
 			end
 
-			def create_dist_and_tmp_files
+			def create_dist_and_tmp_dirs
 				Dir.mkdir File.join(project_name, "dist")
 				Dir.mkdir File.join(project_name, "tmp")
 			end
