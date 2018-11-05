@@ -10,7 +10,7 @@ module Malvolio
 			@config = YAML.load_file(File.join(@path, "config.yaml"))
 			@compiler = Sass::Plugin::Compiler.new
 			@compiler.on_compilation_error do |error, template, _css|
-				print_compilation_error(error, template)
+				raise Malvolio::CompilationError, compilation_error(error, template)
 			end
 			@no_warnings = no_warnings
 		end
@@ -63,9 +63,8 @@ module Malvolio
 			FileUtils.rm_rf(remove_path)
 		end
 
-		def print_compilation_error(error, template)
-			print_colorized("Sass failed to compile. Error found in #{template}", 31)
-			print_colorized(error, 33)
+		def compilation_error(error, template)
+			"Sass failed to compile. Error found in #{template}\n#{error}"
 		end
 
 		def print_colorized(string, code)

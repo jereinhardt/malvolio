@@ -17,7 +17,9 @@ module Malvolio
 		option :no_warnings, type: :boolean
 		desc "build [PATH] [--no-warnings]", "compile the project to a finished HTML email"
 		def build(path = nil)
-			Malvolio::Compiler.new(path, options[:no_warnings]).run!
+			safely do
+				Malvolio::Compiler.new(path, options[:no_warnings]).run!
+			end
 		end
 
 		option :no_warnings, type: :boolean
@@ -30,7 +32,19 @@ module Malvolio
 			sass_files = Dir[File.join(path, "src", "**", "*.scss")]
 			files = html_files + css_files + sass_files
 			puts "Now watching project for changes at #{path}"
-			Filewatcher.new(files).watch { compiler.run! }
+			Filewatcher.new(files).watch do
+				safely { compiler.run! }
+			end
+		end
+
+		private
+
+		def safely(&block)
+			begin
+				yield
+			rescue Malvolio::CompilationError => e
+				puts e
+			end
 		end
 	end
 end
